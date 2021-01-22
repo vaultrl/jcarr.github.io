@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Miles Per Gallon Calculator</title>
+    <link rel="stylesheet" href="rectangle.css">
+</head>
+<body>
+    <main>
+        <h1>The Area and Perimiter Calculator</h1>
+        <script>
+            "use strict";
+            
+            // length
+            const length = parseFloat(prompt("Enter length"));
+
+            // get width
+            const width = parseFloat(prompt("Enter width"));
+
+            // calculate area
+            const area = parseFloat(width*length);
+
+            // calculate perimiter
+            const perimiter = parseFloat((width*2)+(length*2));
+
+            // display results
+            const html = "<p>Length: " +length+ "</p>"
+                +"<p>Width: " +width+ "</p>"
+                +"<p>Area: "+area+"</p>"
+                +"<p>Perimiter: "+perimiter+"</p>";
+            document.write(html);
+        </script>    
+    </main>
+</body>
+</html>
