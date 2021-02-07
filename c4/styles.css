@@ -1,0 +1,39 @@
+body{
+  margin-top: 2em;
+  margin-left: 2em;
+  margin-right: 2em;
+    height: 240px;
+    width: 280px;
+    border: 3px solid grey;
+
+}
+
+h3{
+ margin-left: 0.8em;
+  }
+
+.grid {
+  margin-left: 4.2em;
+    border: 1px solid;
+    display: flex;
+    flex-wrap: wrap;
+    height: 120px;
+    width: 140px;
+  }
+  
+  .grid div {
+    height: 20px;
+    width: 20px;
+  }
+
+  .player-one {
+    background-color: cyan;
+    border-radius: 10px;
+  }
+
+  .player-two {
+    background-color: orangered;
+    border-radius: 10px;
+  }
+
+
