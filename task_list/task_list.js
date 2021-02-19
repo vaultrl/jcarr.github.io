@@ -1,52 +1,54 @@
 "use strict";
 
+const displayTasks = () => {
+    taskList.sort();
+
+    let html = "";
+    for (const task of taskList) {
+        html += "<p><a href='#'>Delete</a>" + task.toString() + "</p>";
+    }    
+    $("#tasks").html(html);
+
+    // add click event handler to each <a> element
+    $("#tasks").find("a").each( (index, a) => {
+        $(a).click( evt => {
+            taskList.load().delete(index).save();
+            displayTasks();
+            evt.preventDefault(); 
+            $("input:first").focus();
+        });
+    });
+}
+
 $(document).ready( () => {
-
-    $("#add_task").click( () => {   
-        const textbox = $("#task");
-        const task = textbox.val();
-        if (task === "") {
-            alert("Please enter a task.");
-            textbox.focus();
-        } 
-
-        else {
-            // add task to web storage 
-            let tasks = localStorage.E14tasks || "";  // "" is default
-            localStorage.E14tasks = tasks.concat(task, "\n");
-
-            // store a 21 day expiration
-            let expire = new Date();
-            expire.setDate( expire.getDate() + 21 );
-            localStorage.expiration = expire.toDateString();
-
-            
-            textbox.val("");
-            $("#task_list").val(localStorage.E14tasks);
-                 
-            textbox.focus();
+    $("#add_task").click( () => {
+        const taskObj = {                   // object literal
+            description: $("#task").val(),
+            dueDate: $("#due_date").val()
+        };
+        const newTask = new Task(taskObj);  // Task object
+        
+        if (newTask.isValid) {
+            taskList.load().add(newTask).save();
+            displayTasks();
+            $("#task").val("");
+            $("#due_date").val("");
+        } else {
+            alert("Please enter a task and/or " + 
+                  "a due date that's in the future.");
         }
+        $("#task").select();
     });
     
     $("#clear_tasks").click( () => {
-
-        localStorage.removeItem("E14tasks");
-        localStorage.removeItem("expiration");        
-        $("#task_list").val("");
+        taskList.clear();
+        $("#tasks").html("");
+        $("#task").val("");
+        $("#due_date").val("");
         $("#task").focus();
-    }); 
+    });   
     
-    // display tasks on initial load
-    const expiration = new Date(localStorage.expiration);
-    const today = new Date();
-    if ( expiration.getTime() < today.getTime() ) {
-        
-        localStorage.removeItem("E14tasks");
-        localStorage.removeItem("expiration");
-    } 
-
-    else {
-        $("#task_list").val(localStorage.E14tasks);
-    }
+    taskList.load()
+    displayTasks();
     $("#task").focus();
 });
