@@ -1,0 +1,58 @@
+
+@media (max-width: 1000px) { 
+
+    .imageblock{
+        display: none;
+            }
+            .fakeimage2{
+                height: 200px;
+                width: 100%;
+                background: #aaa;
+            }
+}
+
+.paral {
+    min-height: 800px;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.paralsec {
+    background-image: url("../images/paralax1.jpg");
+    }
+
+.jumbotron{margin-bottom: 0;}
+
+.margin{
+    margin-top: 250px;
+}
+
+.margin2{
+    margin-top: 280px;
+}
+.fakeimg {
+    height: 200px;
+    background: #aaa;
+  }
+  .fakeimage {
+    height: 200px;
+    width: 100%;
+    background: #aaa;
+  }
+   .fakeimage2 {
+    height: 200px;
+    width: 100%;
+    background: #aaa;
+  }
+
+  .background{
+      background: linear-gradient(#f0ead6, #FFFF)
+  }
+
+  .footerback{
+      background-color: darkslategray;
+  }
+
+
+
+
